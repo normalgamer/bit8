@@ -1,5 +1,5 @@
 # bit8
-Bit8 is an invented 8 bit CPU with 4K addressable memory for ROM and variables, made as a challenge so I learn Java programming.
+Bit8 is an invented 8 bit computer emulator with 4K addressable memory for ROM and variables, made as a challenge so I learn Java programming.
 
 ## Why
 Why not? I've always wanted to learn how emulators work and create mine, so I found out about the Chip 8, some sort of invented CPU/interpreter made for programmers to develop games at home. But after failing to start doing so I decided to create my own system, and now I understand how to make emulators :D !
