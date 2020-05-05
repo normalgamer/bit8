@@ -10,10 +10,10 @@ Supported opcodes
 - 00  -  NOP
 - 66  -  HLT - hang, cpu ded, F (execute order 66 >:D)
 - A0  -  LDX (next hex value)(direct number)
-- A1  -  STX (next 2 byte addr)*
+- A1  -  STX (next 2 byte addr)
 - AA  -  LDX (absolute addr)
 - B0  -  LDY (next hex value)(direct number)
-- B1  -  STY (next 2 byte addr)*
+- B1  -  STY (next 2 byte addr)
 - BB  -  LDY (absolute addr)
 - D0  -  JMP (next 2 byte addr)
 - E0  -  JSR (next 2 byte addr)
