@@ -4,6 +4,11 @@ Bit8 is an invented 8 bit computer emulator with 4K addressable memory for ROM a
 ## Why
 Why not? I've always wanted to learn how emulators work and create mine, so I found out about the Chip 8, some sort of invented CPU/interpreter made for programmers to develop games at home. But after failing to start doing so I decided to create my own system, and now I understand how to make emulators :D !
 
+## Hardware overview
+- CPU: a downgraded 6502, similar to a Chip 8
+- Memory: 4K for program and variables
+- Graphics: not added yet (will use OpenGL)
+
 
 ## Work in progress
 Right now, it's pretty barebones, though I'm planning on adding support for graphics, input, etc. I'm planning on adding more opcodes before graphic capabilities.
