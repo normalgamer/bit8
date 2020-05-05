@@ -23,6 +23,8 @@ public class bit8 {
 	
 	short HLT = 0x66;
 	
+	short INC = 0x20;
+	
 	
 	
 	int pc;	// Program Counter
@@ -60,17 +62,11 @@ public class bit8 {
 	}
 	
 	public void load() {
-		memory[0]=JSR;
+		memory[0]=INC;
 		memory[1]=0x00;
 		memory[2]=0x05;
 		memory[3]=HLT;
-		memory[4]=NOP;
-		memory[5]=LDX_IMMEDIATE;
-		memory[6]=0x05;
-		memory[7]=RTS;
-		memory[8]=NOP;
-		memory[9]=NOP;
-		memory[10]=HLT;
+		memory[5]=0x01;
 	}
 	
 	
@@ -81,6 +77,14 @@ public class bit8 {
 		
 		if(opcode == NOP) {
 			pc++;
+		}
+		else if(opcode == INC) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			
+			memory[addr]++;
+			pc++;
+			pc++;	// Increase program counter twice
 		}
 		else if(opcode == HLT) {
 			pc=4096;
