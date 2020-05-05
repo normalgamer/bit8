@@ -6,7 +6,7 @@ Why not? I've always wanted to learn how emulators work and create mine, so I fo
 
 
 ## Work in progress
-Right now, it's pretty barebones, though I'm planning on adding support for graphics, input, etc.
+Right now, it's pretty barebones, though I'm planning on adding support for graphics, input, etc. I'm planning on adding more opcodes before graphic capabilities.
 Supported opcodes
 - 00  -  NOP
 - 66  -  HLT - hang, cpu ded, F (execute order 66 >:D)
