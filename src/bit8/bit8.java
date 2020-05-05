@@ -9,17 +9,19 @@ public class bit8 {
 	
 	// Unused opcode translations
 	short NOP = 0x00;
-	short LDX_ABSOLUTE = 0xA0;
-	short LDX_ADDRESS = 0xAA;
+	short LDX_IMMEDIATE = 0xA0;
+	short LDX_ABSOLUTE = 0xAA;
 	short STX = 0xA1;
 
-	short LDY_ABSOLUTE = 0xB0;
-	short LDY_ADDRESS = 0xBA;
+	short LDY_IMMEDIATE = 0xB0;
+	short LDY_ABSOLUTE = 0xBA;
 	short STY = 0xB1;
 	
 	short JMP = 0xD0;
 	short JSR = 0xE0;
 	short RTS = 0xEA;
+	
+	short HLT = 0x66;
 	
 	
 	
@@ -58,17 +60,17 @@ public class bit8 {
 	}
 	
 	public void load() {
-		memory[0]=0xE0;
+		memory[0]=JSR;
 		memory[1]=0x00;
 		memory[2]=0x05;
-		memory[3]=0x66;
-		memory[4]=0x00;
-		memory[5]=0xA0;
+		memory[3]=HLT;
+		memory[4]=NOP;
+		memory[5]=LDX_IMMEDIATE;
 		memory[6]=0x05;
-		memory[7]=0xEA;
-		memory[8]=0x00;
-		memory[9]=0x00;
-		memory[10]=0x66;
+		memory[7]=RTS;
+		memory[8]=NOP;
+		memory[9]=NOP;
+		memory[10]=HLT;
 	}
 	
 	
@@ -77,6 +79,70 @@ public class bit8 {
 	public void run() {
 		opcode = memory[pc];
 		
+		if(opcode == NOP) {
+			pc++;
+		}
+		else if(opcode == HLT) {
+			pc=4096;
+			System.exit(0);
+		}
+		else if(opcode == LDX_IMMEDIATE) {
+			pc++;
+			X = memory[pc];
+			pc++;	// Increase program counter
+		}
+		else if(opcode == STX) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			
+			memory[addr] = X;
+			pc++;
+			pc++;	// Increase program counter twice
+		}
+		else if(opcode == LDX_ABSOLUTE) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			X = memory[addr];
+			pc++;
+			pc++;	// Increase program counter twice
+		}
+		else if(opcode == LDY_IMMEDIATE) {
+			pc++;
+			Y = memory[pc];
+			pc++;	// Increase program counter
+		}
+		else if(opcode == STY) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			
+			memory[addr] = Y;
+			pc++;
+			pc++;	// Increase program counter twice
+		}
+		else if(opcode == LDY_ABSOLUTE) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			Y = memory[addr];
+			pc++;
+			pc++;	// Increase program counter twice
+		}
+		else if(opcode == JMP) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			pc = addr;	// No need to increase pc here
+		}
+		else if(opcode == JSR) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			pcStack = pc+2;	// Push pc to stack to return later, add 2 to skip lo byte of addr
+			pc = addr;	// No need to increase pc here
+		}
+		else if(opcode == RTS) {
+			pc = pcStack;	// Return pc from stack
+		}
+		
+		
+		/* Old opcode switch didn't support shorts as comparison
 		switch(opcode) {
 		case 0x00:{
 			pc++;	// Increase program counter
@@ -156,7 +222,7 @@ public class bit8 {
 		}
 		
 		
-		}
+		}*/
 		
 
 	}
