@@ -37,9 +37,9 @@ Supported opcodes
 - C2  -  CPY_IMMEDIATE  - ComPare Y
 - C3  -  CPY_ABSOLUTE   - ComPare Y
 - C4  -  BEQ            - Branch if EQual
-- C6  -  BNE            - Branch if Not Equal
-- C7  -  BPL            - Branch if PLus
-- C8  -  BMI            - Branch if MInus
+- C5  -  BNE            - Branch if Not Equal
+- C6  -  BPL            - Branch if PLus
+- C7  -  BMI            - Branch if MInus
 - D0  -  JMP            - JuMP (always absolute)
 - E0  -  JSR            - Jump to SubRoutine (always absolute)
 - EA  -  RTS            - ReTurn from Subroutine
