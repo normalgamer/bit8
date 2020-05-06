@@ -8,6 +8,7 @@ Why not? I've always wanted to learn how emulators work and create mine, so I fo
 - CPU: a downgraded 6502, similar to a Chip 8
 - Memory: 4K for program and variables
 - Graphics: not added yet (will use OpenGL)
+- Clock: 60Hz, all instructions take 1 clock cycle since it works by sleeping 0.016s after each instruction
 
 ### Others
 - 2 general purpose registers: X and Y
