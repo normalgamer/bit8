@@ -32,6 +32,15 @@ public class bit8 {
 	short TXY = 0x2E;
 	short TYX = 0x2F;
 	
+	short CPX_IMMEDIATE = 0xC0;
+	short CPX_ABSOLUTE = 0xC1;
+	short CPY_IMMEDIATE = 0xC2;
+	short CPY_ABSOLUTE = 0xC3;
+	
+	short BEQ = 0xC4;
+	short BNE = 0xC5;
+	short BPL = 0xC6;	// Not used
+	short BMI = 0xC7;	// Not used
 	
 	
 	int pc;	// Program Counter
@@ -43,6 +52,9 @@ public class bit8 {
 	
 	
 	int addr;
+	
+	short comparison;
+	// 0=not equal, 1=equal, 2=higher,3=lower
 	
 	
 
@@ -65,15 +77,20 @@ public class bit8 {
 			memory[i] = 0;
 		}
 		
+		comparison = 0;
+		
 		
 	}
 	
 	public void load() {
 		// Test code to test newly added opcodes
-		memory[0]=LDY_IMMEDIATE;
-		memory[1]=0x05;
-		memory[2]=DEY;
-		memory[3]=HLT;
+		memory[0]=LDX_IMMEDIATE;
+		memory[1]=0x10;
+		memory[2]=CPX_ABSOLUTE;
+		memory[3]=0x00;
+		memory[4]=0x06;
+		memory[5]=HLT;
+		memory[6]=0x10;
 	}
 	
 	
@@ -123,6 +140,50 @@ public class bit8 {
 		}
 		else if(opcode == TYX) {
 			X = Y;
+			pc++;
+		}
+		else if(opcode == CPX_IMMEDIATE) {
+			if(X == memory[pc+1]) {
+				comparison = 1;
+			}
+			else {
+				comparison = 0;
+			}
+			pc++;
+			pc++;
+		}
+		else if(opcode == CPX_ABSOLUTE) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			if(X == memory[addr]) {
+				comparison = 1;
+			}
+			else {
+				comparison = 0;
+			}
+			pc++;
+			pc++;
+		}
+		else if(opcode == CPY_IMMEDIATE) {
+			if(Y == memory[pc+1]) {
+				comparison = 1;
+			}
+			else {
+				comparison = 0;
+			}
+			pc++;
+			pc++;
+		}
+		else if(opcode == CPY_ABSOLUTE) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			if(Y == memory[addr]) {
+				comparison = 1;
+			}
+			else {
+				comparison = 0;
+			}
+			pc++;
 			pc++;
 		}
 		else if(opcode == HLT) {
@@ -280,6 +341,8 @@ public class bit8 {
 		System.out.println(pc);
 		System.out.print("Program Counter Stack value:\t");
 		System.out.println(pcStack);
+		System.out.print("Comparison:\t");
+		System.out.println(comparison);
 		//System.out.println(String.format("0x%08X", addr));
 		//System.out.println(memory[addr]);
 	}
