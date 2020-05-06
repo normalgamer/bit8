@@ -7,7 +7,7 @@ public class bit8 {
 	short X;	// General purpose registers
 	short Y;
 	
-	// Unused opcode translations
+	
 	short NOP = 0x00;
 	short LDX_IMMEDIATE = 0xA0;
 	short LDX_ABSOLUTE = 0xAA;
@@ -23,7 +23,12 @@ public class bit8 {
 	
 	short HLT = 0x66;
 	
-	short INC = 0x20;
+	short INC = 0x20;	// INC and DEC are always absolute
+	short DEC = 0x21;
+	short INX = 0x25;
+	short DEX = 0x26;
+	short INY = 0x30;
+	short DEY = 0x31;
 	
 	
 	
@@ -62,11 +67,11 @@ public class bit8 {
 	}
 	
 	public void load() {
-		memory[0]=INC;
-		memory[1]=0x00;
-		memory[2]=0x05;
+		// Test code to test newly added opcodes
+		memory[0]=LDY_IMMEDIATE;
+		memory[1]=0x05;
+		memory[2]=DEY;
 		memory[3]=HLT;
-		memory[5]=0x01;
 	}
 	
 	
@@ -85,6 +90,30 @@ public class bit8 {
 			memory[addr]++;
 			pc++;
 			pc++;	// Increase program counter twice
+		}
+		else if(opcode == DEC) {
+			pc++;
+			addr = memory[pc] << 8 | memory[pc+1];
+			
+			memory[addr]--;
+			pc++;
+			pc++;	// Increase program counter twice
+		}
+		else if(opcode == INX) {
+			X++;
+			pc++;	// Increase program counter
+		}
+		else if(opcode == DEX) {
+			X--;
+			pc++;	// Increase program counter
+		}
+		else if(opcode == INY) {
+			Y++;
+			pc++;	// Increase program counter
+		}
+		else if(opcode == DEY) {
+			Y--;
+			pc++;	// Increase program counter
 		}
 		else if(opcode == HLT) {
 			pc=4096;
