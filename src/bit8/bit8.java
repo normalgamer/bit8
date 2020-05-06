@@ -27,8 +27,8 @@ public class bit8 {
 	short DEC = 0x21;
 	short INX = 0x25;
 	short DEX = 0x26;
-	short INY = 0x30;
-	short DEY = 0x31;
+	short INY = 0x2A;
+	short DEY = 0x2B;
 	
 	
 	
