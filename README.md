@@ -32,6 +32,14 @@ Supported opcodes
 - B0  -  LDY_IMMEDIATE  - LoaD into Y
 - B1  -  STY            - STore Y (always absolute)
 - BB  -  LDY_ABSOLUTE   - LoaD into Y
+- C0  -  CPX_IMMEDIATE  - ComPare X
+- C1  -  CPX_ABSOLUTE   - ComPare X
+- C2  -  CPY_IMMEDIATE  - ComPare Y
+- C3  -  CPY_ABSOLUTE   - ComPare Y
+- C4  -  BEQ            - Branch if EQual
+- C6  -  BNE            - Branch if Not Equal
+- C7  -  BPL            - Branch if PLus
+- C8  -  BMI            - Branch if MInus
 - D0  -  JMP            - JuMP (always absolute)
 - E0  -  JSR            - Jump to SubRoutine (always absolute)
 - EA  -  RTS            - ReTurn from Subroutine
