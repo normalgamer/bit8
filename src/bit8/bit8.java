@@ -17,7 +17,7 @@ public class bit8 {
 	short LDY_ABSOLUTE = 0xBA;
 	short STY = 0xB1;
 	
-	short JMP = 0xD0;
+	short JMP = 0xD0;	// Jumping opcodes are always absolute
 	short JSR = 0xE0;
 	short RTS = 0xEA;
 	
@@ -29,6 +29,8 @@ public class bit8 {
 	short DEX = 0x26;
 	short INY = 0x2A;
 	short DEY = 0x2B;
+	short TXY = 0x2E;
+	short TYX = 0x2F;
 	
 	
 	
@@ -114,6 +116,14 @@ public class bit8 {
 		else if(opcode == DEY) {
 			Y--;
 			pc++;	// Increase program counter
+		}
+		else if(opcode == TXY) {
+			Y = X;
+			pc++;
+		}
+		else if(opcode == TYX) {
+			X = Y;
+			pc++;
 		}
 		else if(opcode == HLT) {
 			pc=4096;
