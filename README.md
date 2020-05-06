@@ -16,20 +16,22 @@ Why not? I've always wanted to learn how emulators work and create mine, so I fo
 ## Work in progress
 Right now, it's pretty barebones, though I'm planning on adding support for graphics, input, etc. I'm planning on adding more opcodes before graphic capabilities.
 Supported opcodes
-- 00  -  NOP
-- 20  -  INC (absolute)
-- 21  -  DEC (absolute)
-- 25  -  INX
-- 26  -  DEX
-- 2A  -  INY
-- 2B  -  DEY
-- 66  -  HLT - hang, cpu ded, F (execute order 66 >:D)
-- A0  -  LDX (immediate)
-- A1  -  STX (absolute)
-- AA  -  LDX (absolute addr)
-- B0  -  LDY (immediate)
-- B1  -  STY (absolute)
-- BB  -  LDY (absolute addr)
-- D0  -  JMP (next 2 byte addr)
-- E0  -  JSR (next 2 byte addr)
-- EA  -  RTS (pcStack)
+- 00  -  NOP            - No OPeration
+- 20  -  INC            - INCrement (always absolute)
+- 21  -  DEC            - DECrement (always absolute)
+- 25  -  INX            - INcrement X
+- 26  -  DEX            - DEcrement X
+- 2A  -  INY            - INcrement Y
+- 2B  -  DEY            - DEcrement Y
+- 2E  -  TXY            - Transfer X into Y
+- 2F  -  TYX            - Transfer Y into X
+- 66  -  HLT            - HaLT, cpu ded, F (execute order 66 >:D)
+- A0  -  LDX_IMMEDIATE  -  LoaD into X
+- A1  -  STX            -  STore X (always absolute)
+- AA  -  LDX_ABSOLUTE   - LoaD into X
+- B0  -  LDY_IMMEDIATE  - LoaD into Y
+- B1  -  STY            - STore Y (always absolute)
+- BB  -  LDY_ABSOLUTE   - LoaD into Y
+- D0  -  JMP            - JuMP (always absolute)
+- E0  -  JSR            - Jump to SubRoutine (always absolute)
+- EA  -  RTS            - ReTurn from Subroutine
