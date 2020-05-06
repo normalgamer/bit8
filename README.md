@@ -9,7 +9,7 @@ Why not? I've always wanted to learn how emulators work and create mine, so I fo
 - Memory: 4K for program and variables
 - Graphics: not added yet (will use OpenGL)
 
-#### Others
+### Others
 - 2 general purpose registers: X and Y
 - A Program Counter and a Program Counter Stack for JSR and RTS (updates automatically)
 
