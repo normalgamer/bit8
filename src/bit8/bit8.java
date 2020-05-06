@@ -1,5 +1,6 @@
 package bit8;
 
+import java.util.concurrent.TimeUnit;
 
 public class bit8 {
 	String name;
@@ -85,18 +86,15 @@ public class bit8 {
 	public void load() {
 		// Test code to test newly added opcodes
 		memory[0]=LDX_IMMEDIATE;
-		memory[1]=0x10;
-		memory[2]=CPX_ABSOLUTE;
-		memory[3]=0x00;
-		memory[4]=0x06;
-		memory[5]=HLT;
-		memory[6]=0x10;
+		memory[1]=0x00;
+		memory[2]=INX;
+		memory[60]=HLT;
 	}
 	
 	
 	
 	
-	public void run() {
+	public void run() throws InterruptedException {
 		opcode = memory[pc];
 		
 		if(opcode == NOP) {
@@ -245,6 +243,7 @@ public class bit8 {
 			pc = pcStack;	// Return pc from stack
 		}
 		
+		TimeUnit.MILLISECONDS.sleep(16);	// 1/60s, 60Hz = 60 instructions/second
 		
 		/* Old opcode switch didn't support shorts as comparison
 		switch(opcode) {

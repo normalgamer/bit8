@@ -4,7 +4,7 @@ package bit8;
 public class main {
 	
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		bit8 bit8 = new bit8("bit8");
 
 		
