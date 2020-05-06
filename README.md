@@ -15,6 +15,11 @@ Right now, it's pretty barebones, though I'm planning on adding support for grap
 Supported opcodes
 - 00  -  NOP
 - 20  -  INC (absolute)
+- 21  -  DEC (absolute)
+- 25  -  INX
+- 26  -  DEX
+- 2A  -  INY
+- 2B  -  DEY
 - 66  -  HLT - hang, cpu ded, F (execute order 66 >:D)
 - A0  -  LDX (immediate)
 - A1  -  STX (absolute)
